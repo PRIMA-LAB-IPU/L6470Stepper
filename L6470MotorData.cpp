@@ -8,6 +8,7 @@ L6470MotorData::L6470MotorData()
 	_needToSetCmd = false;
 	_needToSetReg = false;
 	_regTable = NULL;
+	_pre_degree = 0;
 }
 
 L6470MotorData::~L6470MotorData()

@@ -140,6 +140,9 @@ public:
 	L6470MotorData();
 	~L6470MotorData();
 
+	//Add Hotta Katsuyoshi
+	int _pre_degree;
+
 	void	setup(initDriverType type);
 	void	setMotorStep(int motorStep);
 

@@ -66,9 +66,9 @@ void	L6470Stepper::setAngle(int degree, int id)
 {
     if(id >= getDaisyChainNum())
         return;
-    static int pre_degree = 0;
-    _motor[id].setAction(GOTO_DIR, degree, ((degree >= pre_degree) ? 1 : 0));
-    pre_degree = degree;
+
+    _motor[id].setAction(GOTO_DIR, degree, ((degree >= _motor[id].pre_degree) ? 1 : 0));
+    _motor[id].pre_degree = degree;
 }
 
 void	L6470Stepper::step(int steps)
@@ -206,7 +206,7 @@ float L6470Stepper::stepToAngle(long step, int motor_id)
 
 void L6470Stepper::stepClock(float abs_angle, float ms, int motor_id)
 {
-	long curr_step = getCurrStep();
+	long curr_step = getCurrStep(motor_id);
 	long diff_step = angleToStep(abs_angle) - curr_step;
 	_motorDirection dir = (diff_step < 0) ? CCW : CW;
 
@@ -296,7 +296,7 @@ long L6470Stepper::getCurrStep(int motor_id)
 
 float 	L6470Stepper::getCurrAngle(int motor_id)
 {
-	long step = getCurrStep();
+	long step = getCurrStep(motor_id);
 	return stepToAngle(step);
 }
 
