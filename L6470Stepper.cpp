@@ -67,8 +67,8 @@ void	L6470Stepper::setAngle(int degree, int id)
     if(id >= getDaisyChainNum())
         return;
 
-    _motor[id].setAction(GOTO_DIR, degree, ((degree >= _motor[id].pre_degree) ? 1 : 0));
-    _motor[id].pre_degree = degree;
+    _motor[id].setAction(GOTO_DIR, degree, ((degree >= _motor[id]._pre_degree) ? 1 : 0));
+    _motor[id]._pre_degree = degree;
 }
 
 void	L6470Stepper::step(int steps)
